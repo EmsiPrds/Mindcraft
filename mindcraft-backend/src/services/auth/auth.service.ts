@@ -6,17 +6,30 @@ export const findAccountS = async (
 ): Promise<AccountType | null> => {
   try {
     const account = await Account.findOne(filter).exec();
-    if (!account) return null;
-    return account.toObject() as AccountType;
+    return account as AccountType | null;
   } catch (err) {
     console.error("Error finding account:", err);
     return null;
   }
 };
 
-export const registerAccountS = async (
-  accountData: Omit<AccountType, "_id" | "createdAt" | "updatedAt">
-): Promise<AccountType> => {
-  const account = await Account.create(accountData);
-  return account.toObject() as AccountType;
+export const registerAccountS = async ({
+  firstName,
+  middleName,
+  lastName,
+  suffix,
+  email,
+  username,
+  password,
+}: Partial<AccountType>) => {
+  const account = await Account.create({
+    firstName,
+    middleName,
+    lastName,
+    suffix,
+    email,
+    username,
+    password,
+  });
+  return account;
 };
