@@ -27,7 +27,7 @@ const AuthenticatedLayout = () => {
   const hideNav = location.pathname.includes("/challenge/");
   
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 pb-20">
+    <div className="min-h-screen w-full minecraft-bg pb-20">
       <Outlet />
       {!hideNav && <Navigation />}
     </div>

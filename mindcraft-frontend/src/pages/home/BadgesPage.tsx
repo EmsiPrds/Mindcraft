@@ -54,46 +54,46 @@ const BadgesPage = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 overflow-y-scroll no-scrollbar pb-24">
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="mb-8">
-          <h1 className="text-white text-4xl font-bold mb-2 flex items-center gap-3">
-            <Award className="w-10 h-10 text-purple-400" />
+    <div className="min-h-screen w-full minecraft-bg overflow-y-scroll no-scrollbar pb-20 sm:pb-24">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-1 sm:mb-2 flex items-center gap-2 sm:gap-3 minecraft-title">
+            <Award className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#9C27B0]" />
             Badges
           </h1>
-          <p className="text-purple-200">
+          <p className="text-[#E8F5E9] text-lg sm:text-xl md:text-2xl">
             You've earned {userBadges.length} of {allBadges.length} badges
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {allBadges.map((badge) => {
             const earned = hasBadge(badge._id);
             return (
               <div
                 key={badge._id}
-                className={`bg-gray-800 rounded-3xl p-6 border-2 shadow-2xl transition ${
+                className={`minecraft-card p-3 sm:p-4 md:p-6 transition ${
                   earned
-                    ? `border-purple-500/50 bg-gradient-to-br from-gray-800 to-gray-800`
-                    : "border-gray-700 opacity-60"
+                    ? `bg-[#5A5A5A]`
+                    : "bg-[#4A4A4A] opacity-60"
                 }`}
               >
-                <div className="text-center mb-4">
+                <div className="text-center mb-3 sm:mb-4">
                   <div
-                    className={`w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br ${getRarityColor(
+                    className={`w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto minecraft-block ${getRarityColor(
                       badge.rarity
-                    )} flex items-center justify-center text-4xl mb-3 shadow-lg`}
+                    )} flex items-center justify-center text-3xl sm:text-4xl md:text-5xl mb-2 sm:mb-3`}
                   >
                     {badge.icon || "🏆"}
                   </div>
                   {earned && (
-                    <div className="inline-block bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold mb-2">
+                    <div className="inline-block minecraft-block bg-[#4CAF50] text-white px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-xs sm:text-sm md:text-base font-bold mb-1 sm:mb-2">
                       ✓ Earned
                     </div>
                   )}
                 </div>
-                <h3 className="text-white font-bold text-lg mb-2 text-center">{badge.name}</h3>
-                <p className="text-gray-300 text-sm text-center mb-3">{badge.description}</p>
+                <h3 className="text-white font-bold text-sm sm:text-base md:text-xl mb-1 sm:mb-2 text-center minecraft-title">{badge.name}</h3>
+                <p className="text-gray-200 text-xs sm:text-sm md:text-lg text-center mb-2 sm:mb-3">{badge.description}</p>
                 <div className="flex items-center justify-center gap-2 text-xs">
                   <span
                     className={`px-3 py-1 rounded-full font-semibold capitalize ${

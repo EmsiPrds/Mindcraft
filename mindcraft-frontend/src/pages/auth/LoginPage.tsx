@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen w-full minecraft-bg flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
       <motion.div
         className="w-full max-w-md"
         initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ const LoginPage: React.FC = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {/* Card */}
-        <div className="bg-gray-800 rounded-3xl shadow-2xl p-8 sm:p-10 border border-purple-500/20 relative">
+        <div className="minecraft-card bg-[#4A4A4A] p-6 sm:p-8 md:p-10 relative">
           {/* Back Button */}
           <motion.div
             initial={{ opacity: 0, x: -10 }}
@@ -59,10 +59,10 @@ const LoginPage: React.FC = () => {
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-200 transition-colors mb-6 group"
+              className="inline-flex items-center gap-2 text-[#7CB342] hover:text-[#689F38] transition-colors mb-6 group"
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm font-medium">Back to Home</span>
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              <span className="text-lg font-bold">Back to Home</span>
             </Link>
           </motion.div>
 
@@ -74,11 +74,11 @@ const LoginPage: React.FC = () => {
             transition={{ delay: 0.1, duration: 0.4 }}
           >
             <Link to={"/"} className="inline-block mb-3">
-              <h1 className="text-3xl sm:text-4xl font-bold text-white">
-                Mind<span className="text-purple-400">Craft</span>
+              <h1 className="text-4xl sm:text-5xl font-bold text-white minecraft-title">
+                <span className="text-[#7CB342]">Mind</span><span className="text-[#FFD700]">Craft</span>
               </h1>
             </Link>
-            <p className="text-purple-200 text-sm sm:text-base">
+            <p className="text-[#E8F5E9] text-xl">
               Welcome back! Sign in to continue your learning journey
             </p>
           </motion.div>
@@ -143,7 +143,7 @@ const LoginPage: React.FC = () => {
               <motion.button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-4 rounded-xl font-bold text-white text-base bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg transition-all ${
+                className={`w-full py-4 minecraft-button font-bold text-white text-xl bg-[#7CB342] hover:bg-[#689F38] ${
                   loading ? "cursor-not-allowed opacity-70" : "cursor-pointer"
                 }`}
                 whileTap={{ scale: 0.98 }}
@@ -165,11 +165,11 @@ const LoginPage: React.FC = () => {
               transition={{ delay: 0.5, duration: 0.4 }}
               className="text-center pt-2"
             >
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-300 text-lg">
                 Don't have an account?{" "}
                 <button
                   type="button"
-                  className="text-purple-400 hover:text-purple-300 font-semibold hover:underline transition-colors"
+                  className="text-[#FFD700] hover:text-[#FFA500] font-bold hover:underline transition-colors"
                   onClick={() => navigate("/auth/register")}
                 >
                   Register here

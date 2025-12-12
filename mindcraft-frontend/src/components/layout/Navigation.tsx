@@ -22,9 +22,9 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="bg-gray-800 border-t border-gray-700 fixed bottom-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-around py-2">
+    <nav className="bg-[#4A4A4A] border-t-2 sm:border-t-4 border-[#1A1A1A] fixed bottom-0 left-0 right-0 z-50">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4">
+        <div className="flex items-center justify-around py-1.5 sm:py-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
@@ -32,23 +32,23 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition ${
+                className={`flex flex-col items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 md:px-3 py-1.5 sm:py-2 minecraft-button transition ${
                   active
-                    ? "text-purple-400 bg-purple-600/20"
-                    : "text-gray-400 hover:text-gray-300"
+                    ? "text-[#FFD700] bg-[#616161]"
+                    : "text-gray-300 hover:text-white bg-[#4A4A4A] hover:bg-[#5A5A5A]"
                 }`}
               >
-                <Icon className="w-5 h-5" />
-                <span className="text-xs font-medium">{item.label}</span>
+                <Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                <span className="text-xs sm:text-sm font-bold leading-tight">{item.label}</span>
               </Link>
             );
           })}
           <button
             onClick={logout}
-            className="flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition text-gray-400 hover:text-red-400"
+            className="flex flex-col items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 md:px-3 py-1.5 sm:py-2 minecraft-button bg-[#4A4A4A] hover:bg-[#5A5A5A] transition text-gray-300 hover:text-red-400"
           >
-            <LogOut className="w-5 h-5" />
-            <span className="text-xs font-medium">Logout</span>
+            <LogOut className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="text-xs sm:text-sm font-bold leading-tight">Logout</span>
           </button>
         </div>
       </div>

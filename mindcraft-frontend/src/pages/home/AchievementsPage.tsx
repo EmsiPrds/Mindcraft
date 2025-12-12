@@ -83,26 +83,26 @@ const AchievementsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+      <div className="min-h-screen w-full minecraft-bg flex items-center justify-center">
+        <div className="text-white text-3xl font-bold minecraft-title">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 overflow-y-scroll no-scrollbar pb-24">
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="mb-8">
-          <h1 className="text-white text-4xl font-bold mb-2 flex items-center gap-3">
-            <Star className="w-10 h-10 text-yellow-400" />
+    <div className="min-h-screen w-full minecraft-bg overflow-y-scroll no-scrollbar pb-20 sm:pb-24">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-1 sm:mb-2 flex items-center gap-2 sm:gap-3 minecraft-title">
+            <Star className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#FFD700]" />
             Achievements
           </h1>
-          <p className="text-purple-200">
+          <p className="text-[#E8F5E9] text-lg sm:text-xl md:text-2xl">
             You've unlocked {userAchievements.length} of {allAchievements.length} achievements
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {allAchievements.map((achievement) => {
             const earned = hasAchievement(achievement._id);
             const progress = getProgress(achievement);
@@ -110,31 +110,35 @@ const AchievementsPage = () => {
             return (
               <div
                 key={achievement._id}
-                className={`bg-gray-800 rounded-3xl p-6 border-2 shadow-2xl transition ${
+                className={`minecraft-card p-4 sm:p-5 md:p-6 transition ${
                   earned
-                    ? "border-yellow-500/50 bg-gradient-to-br from-gray-800 to-gray-800"
-                    : "border-gray-700"
+                    ? "bg-[#5A5A5A]"
+                    : "bg-[#4A4A4A]"
                 }`}
               >
-                <div className="flex items-start gap-4 mb-4">
+                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${getCategoryColor(
-                      achievement.category
-                    )} flex items-center justify-center text-2xl shadow-lg flex-shrink-0`}
+                    className={`w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 minecraft-block flex items-center justify-center text-2xl sm:text-3xl md:text-4xl flex-shrink-0 ${
+                      achievement.category === "milestone" ? "bg-[#FFD700]" :
+                      achievement.category === "streak" ? "bg-[#FF6B35]" :
+                      achievement.category === "skill" ? "bg-[#87CEEB]" :
+                      achievement.category === "community" ? "bg-[#9C27B0]" :
+                      "bg-[#616161]"
+                    }`}
                   >
                     {achievement.icon || "⭐"}
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-white font-bold text-lg">{achievement.name}</h3>
+                    <div className="flex items-center justify-between mb-1 sm:mb-2 gap-2">
+                      <h3 className="text-white font-bold text-base sm:text-lg md:text-xl minecraft-title">{achievement.name}</h3>
                       {earned && (
-                        <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                        <div className="minecraft-block bg-[#4CAF50] text-white px-2 py-1 sm:px-3 sm:py-2 text-sm sm:text-base font-bold">
                           ✓
                         </div>
                       )}
                     </div>
-                    <p className="text-gray-300 text-sm mb-2">{achievement.description}</p>
-                    <div className="flex items-center gap-2 text-xs text-purple-400">
+                    <p className="text-gray-200 text-sm sm:text-base md:text-lg mb-1 sm:mb-2">{achievement.description}</p>
+                    <div className="flex items-center gap-2 text-sm sm:text-base text-[#FFD700] font-bold">
                       {getCategoryIcon(achievement.category)}
                       <span className="capitalize">{achievement.category}</span>
                     </div>
@@ -142,28 +146,34 @@ const AchievementsPage = () => {
                 </div>
                 
                 {!earned && (
-                  <div className="mt-4">
-                    <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
+                  <div className="mt-3 sm:mt-4">
+                    <div className="flex items-center justify-between text-sm sm:text-base text-gray-200 mb-1 sm:mb-2 font-bold">
                       <span>Progress</span>
                       <span>{Math.round(progress)}%</span>
                     </div>
-                    <div className="bg-gray-700 rounded-full h-2 overflow-hidden">
+                    <div className="minecraft-block bg-[#2A2A2A] h-2.5 sm:h-3 overflow-hidden">
                       <div
-                        className={`bg-gradient-to-r ${getCategoryColor(achievement.category)} h-full transition-all rounded-full`}
+                        className={`h-full transition-all ${
+                          achievement.category === "milestone" ? "bg-[#FFD700]" :
+                          achievement.category === "streak" ? "bg-[#FF6B35]" :
+                          achievement.category === "skill" ? "bg-[#87CEEB]" :
+                          achievement.category === "community" ? "bg-[#9C27B0]" :
+                          "bg-[#616161]"
+                        }`}
                         style={{ width: `${progress}%` }}
                       />
                     </div>
                   </div>
                 )}
                 
-                <div className="mt-4 flex items-center gap-4 text-xs">
+                <div className="mt-3 sm:mt-4 flex items-center gap-3 sm:gap-4 text-sm sm:text-base font-bold">
                   {achievement.xpReward > 0 && (
-                    <span className="text-purple-400 font-semibold">
+                    <span className="text-[#9C27B0]">
                       +{achievement.xpReward} XP
                     </span>
                   )}
                   {achievement.coinReward > 0 && (
-                    <span className="text-yellow-400 font-semibold">
+                    <span className="text-[#FFD700]">
                       +{achievement.coinReward} Coins
                     </span>
                   )}

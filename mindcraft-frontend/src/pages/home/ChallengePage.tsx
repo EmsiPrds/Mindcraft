@@ -78,16 +78,16 @@ const ChallengePage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+      <div className="min-h-screen w-full minecraft-bg flex items-center justify-center">
+        <div className="text-white text-3xl font-bold minecraft-title">Loading...</div>
       </div>
     );
   }
 
   if (!challenge) {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 flex items-center justify-center">
-        <div className="text-white text-xl">Challenge not found</div>
+      <div className="min-h-screen w-full minecraft-bg flex items-center justify-center">
+        <div className="text-white text-3xl font-bold minecraft-title">Challenge not found</div>
       </div>
     );
   }
@@ -96,23 +96,23 @@ const ChallengePage = () => {
     typeof challenge.skillPathId === "object" ? challenge.skillPathId.name : "Unknown";
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 overflow-y-scroll no-scrollbar">
-      <div className="max-w-4xl mx-auto px-4 py-6">
+    <div className="min-h-screen w-full minecraft-bg overflow-y-scroll no-scrollbar pb-20 sm:pb-24">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
         <Link
           to="/home/dashboard"
-          className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-200 mb-6 transition"
+          className="inline-flex items-center gap-2 text-[#7CB342] hover:text-[#689F38] mb-4 sm:mb-6 transition text-base sm:text-lg font-bold"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           Back to Dashboard
         </Link>
-        <div className="bg-gray-800 rounded-3xl p-8 shadow-2xl border border-purple-500/20">
-          <div className="flex items-center gap-3 mb-6">
-            <Target className="w-5 h-5 text-purple-400" />
-            <span className="text-purple-300 text-sm font-medium">{skillPathName}</span>
-            <span className="text-gray-500">•</span>
-            <span className="text-gray-300 text-sm">Day {challenge.dayNumber}</span>
-            <span className="text-gray-500">•</span>
-            <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold capitalize">
+        <div className="minecraft-card bg-[#4A4A4A] p-4 sm:p-6 md:p-8">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <Target className="w-5 h-5 sm:w-6 sm:h-6 text-[#7CB342]" />
+            <span className="text-[#E8F5E9] text-sm sm:text-base md:text-lg font-bold">{skillPathName}</span>
+            <span className="text-gray-500 hidden sm:inline">•</span>
+            <span className="text-gray-200 text-sm sm:text-base md:text-lg font-bold">Day {challenge.dayNumber}</span>
+            <span className="text-gray-500 hidden sm:inline">•</span>
+            <span className="minecraft-block bg-[#9C27B0] text-white px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base font-bold capitalize">
               {challenge.difficulty}
             </span>
           </div>
@@ -207,7 +207,7 @@ const ChallengePage = () => {
             <button
               onClick={handleSubmit}
               disabled={submitting || formData.files.length === 0}
-              className="mt-8 w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-white px-6 py-4 rounded-xl transition font-bold text-lg shadow-lg"
+              className="mt-6 sm:mt-8 w-full minecraft-button bg-[#7CB342] hover:bg-[#689F38] disabled:bg-[#616161] disabled:cursor-not-allowed text-white px-4 py-3 sm:px-6 sm:py-4 font-bold text-base sm:text-lg md:text-xl"
             >
               {submitting ? "Submitting..." : "Complete Challenge →"}
             </button>

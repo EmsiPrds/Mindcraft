@@ -68,67 +68,67 @@ const LeaderboardPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+      <div className="min-h-screen w-full minecraft-bg flex items-center justify-center">
+        <div className="text-white text-3xl font-bold minecraft-title">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 overflow-y-scroll no-scrollbar pb-24">
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        <div className="mb-8">
-          <h1 className="text-white text-4xl font-bold mb-6 flex items-center gap-3">
-            <Trophy className="w-10 h-10 text-yellow-400" />
+    <div className="min-h-screen w-full minecraft-bg overflow-y-scroll no-scrollbar pb-20 sm:pb-24">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 minecraft-title">
+            <Trophy className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#FFD700]" />
             Leaderboard
           </h1>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             <button
               onClick={() => setSortBy("xp")}
-              className={`px-6 py-3 rounded-xl transition font-semibold ${
+              className={`px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 minecraft-button transition font-bold text-sm sm:text-base md:text-lg ${
                 sortBy === "xp"
-                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
-                  : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
+                  ? "bg-[#7CB342] text-white"
+                  : "bg-[#4A4A4A] text-gray-300 hover:bg-[#5A5A5A]"
               }`}
             >
-              <TrendingUp className="w-4 h-4 inline mr-2" />
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 inline mr-1 sm:mr-2" />
               XP
             </button>
             <button
               onClick={() => setSortBy("streak")}
-              className={`px-6 py-3 rounded-xl transition font-semibold ${
+              className={`px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 minecraft-button transition font-bold text-sm sm:text-base md:text-lg ${
                 sortBy === "streak"
-                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
-                  : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
+                  ? "bg-[#FF6B35] text-white"
+                  : "bg-[#4A4A4A] text-gray-300 hover:bg-[#5A5A5A]"
               }`}
             >
-              <Flame className="w-4 h-4 inline mr-2" />
+              <Flame className="w-4 h-4 sm:w-5 sm:h-5 inline mr-1 sm:mr-2" />
               Streak
             </button>
             <button
               onClick={() => setSortBy("level")}
-              className={`px-6 py-3 rounded-xl transition font-semibold ${
+              className={`px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 minecraft-button transition font-bold text-sm sm:text-base md:text-lg ${
                 sortBy === "level"
-                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
-                  : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
+                  ? "bg-[#FFD700] text-[#1A1A1A]"
+                  : "bg-[#4A4A4A] text-gray-300 hover:bg-[#5A5A5A]"
               }`}
             >
-              <Award className="w-4 h-4 inline mr-2" />
+              <Award className="w-4 h-4 sm:w-5 sm:h-5 inline mr-1 sm:mr-2" />
               Level
             </button>
           </div>
         </div>
 
         {userRank && (
-          <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-6 mb-6 shadow-2xl">
-            <div className="flex items-center justify-between">
+          <div className="minecraft-card bg-[#7CB342] p-4 sm:p-5 md:p-6 mb-4 sm:mb-6">
+            <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-purple-100 text-sm mb-1">Your Rank</p>
-                <p className="text-white text-3xl font-bold">#{userRank.rank}</p>
+                <p className="text-[#E8F5E9] text-sm sm:text-base md:text-lg mb-1 font-bold">Your Rank</p>
+                <p className="text-white text-2xl sm:text-3xl md:text-4xl font-bold minecraft-title">#{userRank.rank}</p>
               </div>
               <div className="text-right">
-                <p className="text-purple-100 text-sm mb-1">Total XP</p>
-                <p className="text-white text-2xl font-bold">
+                <p className="text-[#E8F5E9] text-sm sm:text-base md:text-lg mb-1 font-bold">Total XP</p>
+                <p className="text-white text-xl sm:text-2xl md:text-3xl font-bold minecraft-title">
                   {userRank.user.stats.xp.toLocaleString()}
                 </p>
               </div>
@@ -136,33 +136,40 @@ const LeaderboardPage = () => {
           </div>
         )}
 
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {leaderboard.map((entry) => (
             <div
               key={entry.user._id}
-              className="bg-gray-800 rounded-2xl p-5 border border-gray-700 shadow-xl hover:border-purple-500/50 transition"
+              className="minecraft-card bg-[#4A4A4A] p-3 sm:p-4 md:p-5 hover:bg-[#5A5A5A] transition"
             >
-              <div className="flex items-center gap-5">
-                <div className="flex-shrink-0 w-14 flex items-center justify-center">
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-5">
+                <div className="flex-shrink-0 w-10 sm:w-12 md:w-16 flex items-center justify-center">
                   {getRankIcon(entry.rank)}
                 </div>
-                <div className="flex-1">
-                  <div className="text-white font-bold text-lg">
+                <div className="flex-1 min-w-0">
+                  <div className="text-white font-bold text-sm sm:text-base md:text-xl minecraft-title truncate">
                     {entry.user.firstName} {entry.user.lastName}
                   </div>
-                  <div className="text-gray-400 text-sm">@{entry.user.username}</div>
+                  <div className="text-gray-300 text-xs sm:text-sm md:text-lg truncate">@{entry.user.username}</div>
                 </div>
-                <div className="text-right">
-                  <div className="text-white font-bold text-lg">{entry.stats.xp.toLocaleString()} XP</div>
-                  <div className="text-gray-400 text-sm">Level {entry.stats.level}</div>
+                <div className="text-right flex-shrink-0">
+                  <div className="text-white font-bold text-sm sm:text-base md:text-xl">{entry.stats.xp.toLocaleString()} XP</div>
+                  <div className="text-gray-300 text-xs sm:text-sm md:text-lg">Level {entry.stats.level}</div>
                 </div>
-                <div className="text-right">
-                  <div className="text-orange-400 text-sm flex items-center gap-1 font-semibold">
-                    <Flame className="w-4 h-4" />
+                <div className="text-right flex-shrink-0 hidden sm:block">
+                  <div className="text-[#FF6B35] text-sm sm:text-base md:text-lg flex items-center gap-1 font-bold">
+                    <Flame className="w-4 h-4 sm:w-5 sm:h-5" />
                     {entry.stats.currentStreak}
                   </div>
-                  <div className="text-gray-500 text-xs">{entry.stats.completedChallenges} done</div>
+                  <div className="text-gray-400 text-xs sm:text-sm md:text-base">{entry.stats.completedChallenges} done</div>
                 </div>
+              </div>
+              <div className="sm:hidden mt-2 pt-2 border-t-2 border-[#1A1A1A] flex items-center justify-between">
+                <div className="text-[#FF6B35] text-sm flex items-center gap-1 font-bold">
+                  <Flame className="w-4 h-4" />
+                  {entry.stats.currentStreak} streak
+                </div>
+                <div className="text-gray-400 text-sm">{entry.stats.completedChallenges} done</div>
               </div>
             </div>
           ))}

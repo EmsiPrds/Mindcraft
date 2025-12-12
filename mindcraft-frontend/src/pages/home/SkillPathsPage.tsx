@@ -121,86 +121,87 @@ const SkillPathsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+      <div className="min-h-screen w-full minecraft-bg flex items-center justify-center">
+        <div className="text-white text-3xl font-bold minecraft-title">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 overflow-y-scroll no-scrollbar pb-24">
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="mb-8 flex items-center justify-between">
+    <div className="min-h-screen w-full minecraft-bg overflow-y-scroll no-scrollbar pb-20 sm:pb-24">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-white text-4xl font-bold mb-2 flex items-center gap-3">
-              <Target className="w-10 h-10 text-purple-400" />
+            <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-1 sm:mb-2 flex items-center gap-2 sm:gap-3 minecraft-title">
+              <Target className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#7CB342]" />
               Skill Paths
             </h1>
-            <p className="text-purple-200">Choose your learning journey</p>
+            <p className="text-[#E8F5E9] text-lg sm:text-xl md:text-2xl">Choose your learning journey</p>
           </div>
           <button
             onClick={() => setShowCreateModal(true)}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl flex items-center gap-2 transition-all shadow-lg hover:shadow-xl"
+            className="minecraft-button bg-[#7CB342] hover:bg-[#689F38] text-white font-bold py-2 px-4 sm:py-3 sm:px-6 text-base sm:text-lg md:text-xl flex items-center justify-center gap-2 w-full sm:w-auto"
           >
-            <Plus className="w-5 h-5" />
-            <span>Create Custom</span>
+            <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="hidden sm:inline">Create Custom</span>
+            <span className="sm:hidden">Create</span>
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {skillPaths.map((path) => {
             const pathProgress = getProgressForPath(path._id);
             return (
               <div
                 key={path._id}
-                className="bg-gray-800 rounded-3xl p-6 border border-gray-700 shadow-2xl hover:border-purple-500/50 transition"
+                className="minecraft-card bg-[#4A4A4A] p-4 sm:p-5 md:p-6 hover:bg-[#5A5A5A] transition"
               >
-                <div className="flex items-center justify-between mb-5">
-                  <div className="text-5xl">{path.icon || "🎯"}</div>
-                  <span className="bg-purple-600 text-white px-4 py-1.5 rounded-full text-xs font-bold capitalize">
+                <div className="flex items-center justify-between mb-4 sm:mb-5">
+                  <div className="text-4xl sm:text-5xl md:text-6xl">{path.icon || "🎯"}</div>
+                  <span className="minecraft-block bg-[#9C27B0] text-white px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base font-bold capitalize">
                     {path.difficulty}
                   </span>
                 </div>
-                <h3 className="text-white text-2xl font-bold mb-3">{path.name}</h3>
-                <p className="text-gray-300 text-sm mb-5 line-clamp-3">{path.description}</p>
+                <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 minecraft-title">{path.name}</h3>
+                <p className="text-gray-200 text-base sm:text-lg mb-4 sm:mb-5 line-clamp-3">{path.description}</p>
 
                 {pathProgress && (
-                  <div className="mb-5">
-                    <div className="flex items-center justify-between text-sm text-gray-300 mb-3">
-                      <span className="font-semibold">
+                  <div className="mb-4 sm:mb-5">
+                    <div className="flex items-center justify-between text-sm sm:text-base text-gray-200 mb-2 sm:mb-3 font-bold">
+                      <span className="text-xs sm:text-sm">
                         {pathProgress.progress.completed} / {pathProgress.progress.total} challenges
                       </span>
-                      <span className="font-semibold text-purple-400">
+                      <span className="text-[#7CB342]">
                         {pathProgress.progress.percentage}%
                       </span>
                     </div>
-                    <div className="bg-gray-700 rounded-full h-2.5 overflow-hidden">
+                    <div className="minecraft-block bg-[#2A2A2A] h-2.5 sm:h-3 overflow-hidden">
                       <div
-                        className="bg-gradient-to-r from-purple-500 to-blue-500 h-full transition-all rounded-full"
+                        className="bg-[#7CB342] h-full transition-all"
                         style={{ width: `${pathProgress.progress.percentage}%` }}
                       />
                     </div>
                   </div>
                 )}
 
-                <div className="flex items-center gap-4 text-sm text-gray-400 mb-5">
+                <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-gray-300 mb-4 sm:mb-5 font-bold">
                   <span>{path.totalChallenges} challenges</span>
                   {path.estimatedDuration && <span>~{path.estimatedDuration} days</span>}
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <button
                     onClick={() => handleSelectPath(path._id)}
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-3 rounded-xl transition font-bold flex items-center justify-center gap-2 shadow-lg"
+                    className="flex-1 minecraft-button bg-[#7CB342] hover:bg-[#689F38] text-white px-3 py-2 sm:px-4 sm:py-3 font-bold flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg"
                   >
                     {pathProgress ? (
                       <>
-                        <Play className="w-5 h-5" />
+                        <Play className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                         Continue
                       </>
                     ) : (
                       <>
-                        <CheckCircle className="w-5 h-5" />
+                        <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                         Select Path
                       </>
                     )}
@@ -208,13 +209,13 @@ const SkillPathsPage = () => {
                   <button
                     onClick={() => generateChallenge(path._id)}
                     disabled={generatingChallengeFor === path._id}
-                    className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 disabled:from-gray-600 disabled:to-gray-600 text-white px-4 py-3 rounded-xl transition font-bold flex items-center justify-center gap-2 shadow-lg disabled:cursor-not-allowed"
+                    className="minecraft-button bg-[#FFD700] hover:bg-[#FFA500] disabled:bg-[#616161] text-[#1A1A1A] px-3 py-2 sm:px-4 sm:py-3 font-bold flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg disabled:cursor-not-allowed disabled:text-gray-400"
                     title="Generate AI Challenge"
                   >
                     {generatingChallengeFor === path._id ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 animate-spin" />
                     ) : (
-                      <Wand2 className="w-5 h-5" />
+                      <Wand2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                     )}
                   </button>
                 </div>
@@ -225,21 +226,21 @@ const SkillPathsPage = () => {
 
         {/* Create Custom Skill Path Modal */}
         {showCreateModal && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-            <div className="bg-gray-800 rounded-2xl p-6 max-w-2xl w-full border border-gray-700 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm">
+            <div className="minecraft-card bg-[#4A4A4A] p-4 sm:p-5 md:p-6 max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
-                    <Plus className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 minecraft-block bg-[#7CB342] flex items-center justify-center">
+                    <Plus className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Create Custom Skill Path</h3>
+                  <h3 className="text-3xl font-bold text-white minecraft-title">Create Custom Skill Path</h3>
                 </div>
                 <button
                   onClick={() => {
                     setShowCreateModal(false);
                     setNewSkillPath({ name: "", description: "", icon: "🎯", color: "#8B5CF6", difficulty: "beginner" });
                   }}
-                  className="text-gray-400 hover:text-white transition p-2 hover:bg-gray-700 rounded-lg"
+                  className="text-gray-300 hover:text-white transition p-2 hover:bg-[#5A5A5A] minecraft-button bg-[#4A4A4A]"
                   disabled={creatingSkillPath}
                 >
                   <X className="w-6 h-6" />
@@ -249,7 +250,7 @@ const SkillPathsPage = () => {
               <div className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="block text-white text-sm font-semibold mb-2">
+                  <label className="block text-white text-lg font-bold mb-2">
                     Name <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -257,14 +258,23 @@ const SkillPathsPage = () => {
                     value={newSkillPath.name}
                     onChange={(e) => setNewSkillPath({ ...newSkillPath, name: e.target.value })}
                     placeholder="e.g., Photography, 3D Modeling, Music Production"
-                    className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+                    className="w-full minecraft-block bg-[#4A4A4A] text-white px-4 py-3 text-lg focus:bg-[#5A5A5A] focus:border-[#7CB342]"
+                    style={{
+                      borderStyle: 'solid',
+                      borderWidth: '3px',
+                      borderColor: '#1A1A1A',
+                      borderTopColor: '#6A6A6A',
+                      borderLeftColor: '#6A6A6A',
+                      borderRightColor: '#1A1A1A',
+                      borderBottomColor: '#1A1A1A',
+                    }}
                     disabled={creatingSkillPath}
                   />
                 </div>
 
                 {/* Description */}
                 <div>
-                  <label className="block text-white text-sm font-semibold mb-2">
+                  <label className="block text-white text-lg font-bold mb-2">
                     Description <span className="text-red-400">*</span>
                   </label>
                   <textarea
@@ -272,7 +282,16 @@ const SkillPathsPage = () => {
                     onChange={(e) => setNewSkillPath({ ...newSkillPath, description: e.target.value })}
                     placeholder="Describe what learners will learn in this skill path..."
                     rows={4}
-                    className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none resize-none"
+                    className="w-full minecraft-block bg-[#4A4A4A] text-white px-4 py-3 text-lg focus:bg-[#5A5A5A] focus:border-[#7CB342] resize-none"
+                    style={{
+                      borderStyle: 'solid',
+                      borderWidth: '3px',
+                      borderColor: '#1A1A1A',
+                      borderTopColor: '#6A6A6A',
+                      borderLeftColor: '#6A6A6A',
+                      borderRightColor: '#1A1A1A',
+                      borderBottomColor: '#1A1A1A',
+                    }}
                     disabled={creatingSkillPath}
                   />
                 </div>
@@ -281,7 +300,7 @@ const SkillPathsPage = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {/* Icon */}
                   <div>
-                    <label className="block text-white text-sm font-semibold mb-2">
+                    <label className="block text-white text-lg font-bold mb-2">
                       Icon (Emoji)
                     </label>
                     <div className="flex items-center gap-3">
@@ -291,7 +310,16 @@ const SkillPathsPage = () => {
                         onChange={(e) => setNewSkillPath({ ...newSkillPath, icon: e.target.value })}
                         placeholder="🎯"
                         maxLength={2}
-                        className="w-20 bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none text-center text-2xl"
+                        className="w-20 minecraft-block bg-[#4A4A4A] text-white px-4 py-3 text-center text-2xl focus:bg-[#5A5A5A] focus:border-[#7CB342]"
+                        style={{
+                          borderStyle: 'solid',
+                          borderWidth: '3px',
+                          borderColor: '#1A1A1A',
+                          borderTopColor: '#6A6A6A',
+                          borderLeftColor: '#6A6A6A',
+                          borderRightColor: '#1A1A1A',
+                          borderBottomColor: '#1A1A1A',
+                        }}
                         disabled={creatingSkillPath}
                       />
                       <div className="flex gap-2">
@@ -300,10 +328,10 @@ const SkillPathsPage = () => {
                             key={emoji}
                             type="button"
                             onClick={() => setNewSkillPath({ ...newSkillPath, icon: emoji })}
-                            className={`text-2xl p-2 rounded-lg transition ${
+                            className={`text-2xl p-2 minecraft-button transition ${
                               newSkillPath.icon === emoji
-                                ? "bg-purple-600 scale-110"
-                                : "bg-gray-700 hover:bg-gray-600"
+                                ? "bg-[#7CB342] scale-110"
+                                : "bg-[#4A4A4A] hover:bg-[#5A5A5A]"
                             }`}
                             disabled={creatingSkillPath}
                           >
@@ -316,7 +344,7 @@ const SkillPathsPage = () => {
 
                   {/* Color */}
                   <div>
-                    <label className="block text-white text-sm font-semibold mb-2">
+                    <label className="block text-white text-lg font-bold mb-2">
                       Color
                     </label>
                     <div className="flex items-center gap-3">
@@ -324,7 +352,16 @@ const SkillPathsPage = () => {
                         type="color"
                         value={newSkillPath.color}
                         onChange={(e) => setNewSkillPath({ ...newSkillPath, color: e.target.value })}
-                        className="w-20 h-12 bg-gray-700 rounded-lg border border-gray-600 cursor-pointer"
+                        className="w-20 h-12 minecraft-block bg-[#4A4A4A] cursor-pointer"
+                        style={{
+                          borderStyle: 'solid',
+                          borderWidth: '3px',
+                          borderColor: '#1A1A1A',
+                          borderTopColor: '#6A6A6A',
+                          borderLeftColor: '#6A6A6A',
+                          borderRightColor: '#1A1A1A',
+                          borderBottomColor: '#1A1A1A',
+                        }}
                         disabled={creatingSkillPath}
                       />
                       <div className="flex gap-2 flex-wrap">
@@ -349,7 +386,7 @@ const SkillPathsPage = () => {
 
                 {/* Difficulty */}
                 <div>
-                  <label className="block text-white text-sm font-semibold mb-2">
+                  <label className="block text-white text-lg font-bold mb-2">
                     Difficulty Level <span className="text-red-400">*</span>
                   </label>
                   <div className="grid grid-cols-3 gap-3">
@@ -358,10 +395,10 @@ const SkillPathsPage = () => {
                         key={level}
                         type="button"
                         onClick={() => setNewSkillPath({ ...newSkillPath, difficulty: level })}
-                        className={`px-4 py-3 rounded-lg font-semibold transition ${
+                        className={`px-4 py-3 minecraft-button font-bold text-lg transition ${
                           newSkillPath.difficulty === level
-                            ? "bg-purple-600 text-white"
-                            : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                            ? "bg-[#7CB342] text-white"
+                            : "bg-[#4A4A4A] text-gray-300 hover:bg-[#5A5A5A]"
                         }`}
                         disabled={creatingSkillPath}
                       >
@@ -372,9 +409,9 @@ const SkillPathsPage = () => {
                 </div>
 
                 {/* Preview */}
-                <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-700">
-                  <p className="text-gray-400 text-sm font-semibold mb-3">Preview:</p>
-                  <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div className="minecraft-card bg-[#5A5A5A] p-4">
+                  <p className="text-gray-200 text-lg font-bold mb-3">Preview:</p>
+                  <div className="minecraft-card bg-[#4A4A4A] p-4">
                     <div className="flex items-center justify-between mb-3">
                       <div className="text-3xl">{newSkillPath.icon || "🎯"}</div>
                       <span
@@ -394,20 +431,20 @@ const SkillPathsPage = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3 pt-4 border-t border-gray-700">
+                <div className="flex gap-3 pt-4 border-t-4 border-[#1A1A1A]">
                   <button
                     onClick={createCustomSkillPath}
                     disabled={creatingSkillPath || !newSkillPath.name.trim() || !newSkillPath.description.trim()}
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-600 text-white font-semibold py-3 px-6 rounded-xl transition flex items-center justify-center gap-2 disabled:cursor-not-allowed"
+                    className="flex-1 minecraft-button bg-[#7CB342] hover:bg-[#689F38] disabled:bg-[#616161] text-white font-bold py-3 px-6 text-xl transition flex items-center justify-center gap-2 disabled:cursor-not-allowed"
                   >
                     {creatingSkillPath ? (
                       <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <Loader2 className="w-6 h-6 animate-spin" />
                         <span>Creating...</span>
                       </>
                     ) : (
                       <>
-                        <Plus className="w-5 h-5" />
+                        <Plus className="w-6 h-6" />
                         <span>Create Skill Path</span>
                       </>
                     )}
@@ -418,7 +455,7 @@ const SkillPathsPage = () => {
                       setNewSkillPath({ name: "", description: "", icon: "🎯", color: "#8B5CF6", difficulty: "beginner" });
                     }}
                     disabled={creatingSkillPath}
-                    className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl transition disabled:opacity-50"
+                    className="px-6 py-3 minecraft-button bg-[#616161] hover:bg-[#4A4A4A] text-white font-bold text-xl transition disabled:opacity-50"
                   >
                     Cancel
                   </button>
@@ -430,23 +467,23 @@ const SkillPathsPage = () => {
 
         {/* Challenge Generation Modal */}
         {showChallengeModal && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-            <div className="bg-gray-800 rounded-2xl p-6 max-w-3xl w-full border border-gray-700 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm">
+            <div className="minecraft-card bg-[#4A4A4A] p-4 sm:p-5 md:p-6 max-w-3xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
               {generatingChallengeFor ? (
                 <div className="text-center py-12">
-                  <Loader2 className="w-16 h-16 animate-spin text-purple-400 mx-auto mb-6" />
-                  <h3 className="text-2xl font-bold text-white mb-4">Generating Challenge...</h3>
-                  <p className="text-gray-300 mb-2">Our AI is crafting a unique challenge for you</p>
-                  <p className="text-gray-400 text-sm">This may take a few moments</p>
+                  <Loader2 className="w-20 h-20 animate-spin text-[#7CB342] mx-auto mb-6" />
+                  <h3 className="text-3xl font-bold text-white mb-4 minecraft-title">Generating Challenge...</h3>
+                  <p className="text-gray-200 text-xl mb-2">Our AI is crafting a unique challenge for you</p>
+                  <p className="text-gray-300 text-lg">This may take a few moments</p>
                 </div>
               ) : generatedChallenge ? (
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
-                        <Sparkles className="w-6 h-6 text-white" />
+                      <div className="w-12 h-12 minecraft-block bg-[#4CAF50] flex items-center justify-center">
+                        <Sparkles className="w-7 h-7 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white">Challenge Generated!</h3>
+                      <h3 className="text-3xl font-bold text-white minecraft-title">Challenge Generated!</h3>
                     </div>
                     <button
                       onClick={() => {
@@ -454,55 +491,55 @@ const SkillPathsPage = () => {
                         setGeneratedChallenge(null);
                         setGenerationError(null);
                       }}
-                      className="text-gray-400 hover:text-white transition p-2 hover:bg-gray-700 rounded-lg"
+                      className="text-gray-300 hover:text-white transition p-2 hover:bg-[#5A5A5A] minecraft-button bg-[#4A4A4A]"
                     >
                       <X className="w-6 h-6" />
                     </button>
                   </div>
 
-                  <div className="bg-gray-900/50 rounded-xl p-6 mb-6">
-                    <h4 className="text-white text-2xl font-bold mb-4">{generatedChallenge.title}</h4>
+                  <div className="minecraft-card bg-[#5A5A5A] p-6 mb-6">
+                    <h4 className="text-white text-3xl font-bold mb-4 minecraft-title">{generatedChallenge.title}</h4>
                     
                     <div className="space-y-4">
                       <div>
-                        <span className="text-gray-400 text-sm font-semibold">Description:</span>
-                        <p className="text-white mt-2">{generatedChallenge.description}</p>
+                        <span className="text-gray-200 text-lg font-bold">Description:</span>
+                        <p className="text-white mt-2 text-lg">{generatedChallenge.description}</p>
                       </div>
                       
                       <div>
-                        <span className="text-gray-400 text-sm font-semibold">Instructions:</span>
-                        <div className="text-white mt-2 whitespace-pre-wrap bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                        <span className="text-gray-200 text-lg font-bold">Instructions:</span>
+                        <div className="text-white mt-2 whitespace-pre-wrap minecraft-card bg-[#4A4A4A] p-4 text-lg">
                           {generatedChallenge.instructions}
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-gray-700">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t-4 border-[#1A1A1A]">
                         <div>
-                          <span className="text-gray-400 text-xs block mb-1">Day Number</span>
-                          <span className="text-white font-bold text-lg">{generatedChallenge.dayNumber}</span>
+                          <span className="text-gray-200 text-base block mb-1 font-bold">Day Number</span>
+                          <span className="text-white font-bold text-xl">{generatedChallenge.dayNumber}</span>
                         </div>
                         <div>
-                          <span className="text-gray-400 text-xs block mb-1">Difficulty</span>
-                          <span className="text-white font-bold text-lg capitalize">{generatedChallenge.difficulty}</span>
+                          <span className="text-gray-200 text-base block mb-1 font-bold">Difficulty</span>
+                          <span className="text-white font-bold text-xl capitalize">{generatedChallenge.difficulty}</span>
                         </div>
                         <div>
-                          <span className="text-gray-400 text-xs block mb-1">XP Reward</span>
-                          <span className="text-purple-300 font-bold text-lg">{generatedChallenge.xpReward}</span>
+                          <span className="text-gray-200 text-base block mb-1 font-bold">XP Reward</span>
+                          <span className="text-[#9C27B0] font-bold text-xl">{generatedChallenge.xpReward}</span>
                         </div>
                         <div>
-                          <span className="text-gray-400 text-xs block mb-1">Coin Reward</span>
-                          <span className="text-yellow-300 font-bold text-lg">{generatedChallenge.coinReward}</span>
+                          <span className="text-gray-200 text-base block mb-1 font-bold">Coin Reward</span>
+                          <span className="text-[#FFD700] font-bold text-xl">{generatedChallenge.coinReward}</span>
                         </div>
                       </div>
 
                       {generatedChallenge.tags && generatedChallenge.tags.length > 0 && (
-                        <div className="pt-4 border-t border-gray-700">
-                          <span className="text-gray-400 text-sm font-semibold block mb-2">Tags:</span>
+                        <div className="pt-4 border-t-4 border-[#1A1A1A]">
+                          <span className="text-gray-200 text-lg font-bold block mb-2">Tags:</span>
                           <div className="flex flex-wrap gap-2">
                             {generatedChallenge.tags.map((tag, idx) => (
                               <span
                                 key={idx}
-                                className="px-3 py-1 bg-purple-600/20 text-purple-300 rounded-full text-xs"
+                                className="px-4 py-2 minecraft-block bg-[#9C27B0] text-white text-base font-bold"
                               >
                                 {tag}
                               </span>
@@ -521,7 +558,7 @@ const SkillPathsPage = () => {
                           setShowChallengeModal(false);
                           setGeneratedChallenge(null);
                         }}
-                        className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition"
+                        className="flex-1 minecraft-button bg-[#7CB342] hover:bg-[#689F38] text-white font-bold py-3 px-6 text-xl transition"
                       >
                         View Challenge
                       </button>
@@ -532,7 +569,7 @@ const SkillPathsPage = () => {
                         setGeneratedChallenge(null);
                         setGenerationError(null);
                       }}
-                      className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl transition"
+                      className="px-6 py-3 minecraft-button bg-[#616161] hover:bg-[#4A4A4A] text-white font-bold text-xl transition"
                     >
                       Close
                     </button>
@@ -542,25 +579,25 @@ const SkillPathsPage = () => {
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
-                        <X className="w-6 h-6 text-white" />
+                      <div className="w-12 h-12 minecraft-block bg-red-600 flex items-center justify-center">
+                        <X className="w-7 h-7 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-red-400">Generation Failed</h3>
+                      <h3 className="text-3xl font-bold text-red-400 minecraft-title">Generation Failed</h3>
                     </div>
                     <button
                       onClick={() => {
                         setShowChallengeModal(false);
                         setGenerationError(null);
                       }}
-                      className="text-gray-400 hover:text-white transition p-2 hover:bg-gray-700 rounded-lg"
+                      className="text-gray-300 hover:text-white transition p-2 hover:bg-[#5A5A5A] minecraft-button bg-[#4A4A4A]"
                     >
                       <X className="w-6 h-6" />
                     </button>
                   </div>
 
-                  <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-4 mb-6">
-                    <p className="text-red-300 font-medium mb-2">Error Details:</p>
-                    <p className="text-red-200 text-sm">{generationError}</p>
+                  <div className="minecraft-card bg-red-900/30 p-4 mb-6">
+                    <p className="text-red-300 font-bold mb-2 text-lg">Error Details:</p>
+                    <p className="text-red-200 text-base">{generationError}</p>
                   </div>
 
                   <button
@@ -568,7 +605,7 @@ const SkillPathsPage = () => {
                       setShowChallengeModal(false);
                       setGenerationError(null);
                     }}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition"
+                    className="w-full minecraft-button bg-[#616161] hover:bg-[#4A4A4A] text-white font-bold py-3 px-6 text-xl transition"
                   >
                     Close
                   </button>

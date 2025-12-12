@@ -88,7 +88,7 @@ const RegisterPage: React.FC = () => {
   }, [form.email, checkEmailVerification]);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 flex items-center justify-center p-4 sm:p-6 lg:p-8 py-6 sm:py-8">
+    <div className="min-h-screen w-full minecraft-bg flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 py-4 sm:py-6 md:py-8">
       <motion.div
         className="relative z-10 w-full max-w-2xl"
         initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ const RegisterPage: React.FC = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {/* Card */}
-        <div className="bg-gray-800 rounded-3xl shadow-2xl p-8 sm:p-10 border border-purple-500/20 relative">
+        <div className="minecraft-card bg-[#4A4A4A] p-4 sm:p-6 md:p-8 lg:p-10 relative">
           {/* Back Button */}
           <motion.div
             initial={{ opacity: 0, x: -10 }}
@@ -105,10 +105,10 @@ const RegisterPage: React.FC = () => {
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-200 transition-colors mb-6 group"
+              className="inline-flex items-center gap-2 text-[#7CB342] hover:text-[#689F38] transition-colors mb-6 group"
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm font-medium">Back to Home</span>
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              <span className="text-lg font-bold">Back to Home</span>
             </Link>
           </motion.div>
 
@@ -120,11 +120,11 @@ const RegisterPage: React.FC = () => {
             transition={{ delay: 0.1, duration: 0.4 }}
           >
             <Link to={"/"} className="inline-block mb-3">
-              <h1 className="text-3xl sm:text-4xl font-bold text-white">
-                Mind<span className="text-purple-400">Craft</span>
+              <h1 className="text-4xl sm:text-5xl font-bold text-white minecraft-title">
+                <span className="text-[#7CB342]">Mind</span><span className="text-[#FFD700]">Craft</span>
               </h1>
             </Link>
-            <p className="text-purple-200 text-sm sm:text-base">
+            <p className="text-[#E8F5E9] text-xl">
               Create your account and start your learning journey
             </p>
           </motion.div>
@@ -214,9 +214,9 @@ const RegisterPage: React.FC = () => {
                   icon={<Mail className="w-5 h-5" />}
                 />
                 {emailVerified && (
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-green-400">
-                    <CheckCircle className="w-5 h-5" />
-                    <span className="text-xs font-semibold">Verified</span>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-[#4CAF50]">
+                    <CheckCircle className="w-6 h-6" />
+                    <span className="text-base font-bold">Verified</span>
                   </div>
                 )}
               </div>
@@ -225,7 +225,7 @@ const RegisterPage: React.FC = () => {
                   type="button"
                   onClick={handleSendOTP}
                   disabled={loading || !form.email}
-                  className="mt-2 text-sm text-purple-400 hover:text-purple-300 font-medium hover:underline transition-colors disabled:opacity-50"
+                  className="mt-2 text-lg text-[#7CB342] hover:text-[#689F38] font-bold hover:underline transition-colors disabled:opacity-50"
                 >
                   Send verification code
                 </button>
@@ -238,9 +238,9 @@ const RegisterPage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-2xl p-5 border border-purple-500/30"
+                className="minecraft-card bg-[#5A5A5A] p-5"
               >
-                <p className="text-purple-200 text-sm mb-4">
+                <p className="text-[#E8F5E9] text-lg mb-4">
                   Enter the 6-digit code sent to <strong className="text-white">{form.email}</strong>
                 </p>
                 <div className="flex gap-3">
@@ -252,14 +252,23 @@ const RegisterPage: React.FC = () => {
                     value={otpCode}
                     onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))}
                     placeholder="000000"
-                    className="flex-1 bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white text-center text-xl font-mono tracking-widest placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="flex-1 minecraft-block bg-[#4A4A4A] px-4 py-3 text-white text-center text-2xl font-mono tracking-widest placeholder-gray-500 focus:outline-none focus:bg-[#5A5A5A] focus:border-[#7CB342]"
+                    style={{
+                      borderStyle: 'solid',
+                      borderWidth: '3px',
+                      borderColor: '#1A1A1A',
+                      borderTopColor: '#6A6A6A',
+                      borderLeftColor: '#6A6A6A',
+                      borderRightColor: '#1A1A1A',
+                      borderBottomColor: '#1A1A1A',
+                    }}
                   />
                   <motion.button
                     type="button"
                     onClick={handleVerifyOTP}
                     disabled={loading || otpCode.length !== 6}
                     whileTap={{ scale: 0.98 }}
-                    className={`px-6 py-3 rounded-xl font-bold text-white text-sm bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg transition-all ${
+                    className={`px-6 py-3 minecraft-button font-bold text-white text-lg bg-[#7CB342] hover:bg-[#689F38] ${
                       loading || otpCode.length !== 6
                         ? "cursor-not-allowed opacity-70"
                         : "cursor-pointer"
@@ -273,7 +282,7 @@ const RegisterPage: React.FC = () => {
                     type="button"
                     onClick={handleSendOTP}
                     disabled={loading}
-                    className="mt-3 text-sm text-purple-400 hover:text-purple-300 font-medium hover:underline transition-colors disabled:opacity-50"
+                    className="mt-3 text-lg text-[#FFD700] hover:text-[#FFA500] font-bold hover:underline transition-colors disabled:opacity-50"
                   >
                     Resend code
                   </button>
@@ -340,7 +349,7 @@ const RegisterPage: React.FC = () => {
                 type="submit"
                 onClick={handleRegister}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full py-4 rounded-xl font-bold text-white text-base bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg transition-all ${
+                className={`w-full py-4 minecraft-button font-bold text-white text-xl bg-[#7CB342] hover:bg-[#689F38] ${
                   loading || !emailVerified
                     ? "cursor-not-allowed opacity-70"
                     : "cursor-pointer"
@@ -365,11 +374,11 @@ const RegisterPage: React.FC = () => {
               transition={{ delay: 0.6, duration: 0.4 }}
               className="text-center pt-2"
             >
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-300 text-lg">
                 Already have an account?{" "}
                 <button
                   type="button"
-                  className="text-purple-400 hover:text-purple-300 font-semibold hover:underline transition-colors"
+                  className="text-[#FFD700] hover:text-[#FFA500] font-bold hover:underline transition-colors"
                   onClick={() => navigate("/auth/login")}
                 >
                   Login here
