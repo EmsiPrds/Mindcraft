@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Award, Flame, Target, TrendingUp, Trophy, Zap } from "lucide-react";
+import { Target, Trophy, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
@@ -111,32 +111,6 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="minecraft-card bg-[#4A4A4A] p-2.5 sm:p-3 md:p-4 lg:p-2 xl:p-2.5 hover:bg-[#5A5A5A] transition sm:col-span-2 lg:col-span-1">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-10 2xl:h-10 minecraft-block bg-[#FF6B35] flex items-center justify-center mb-1 sm:mb-1.5 md:mb-2 lg:mb-1 xl:mb-1.5 mx-auto">
-                  <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-5 2xl:h-5 text-white" />
-                </div>
-                <h3 className="text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-base font-bold text-white mb-1 sm:mb-1.5 lg:mb-0.5 xl:mb-1 minecraft-title">
-                  Build Habits
-                </h3>
-                <p className="text-gray-200 text-xs sm:text-xs md:text-sm lg:text-xs xl:text-xs 2xl:text-xs leading-relaxed">
-                  Track your daily streak and watch your skills grow with
-                  consistent practice
-                </p>
-              </div>
-
-              <div className="minecraft-card bg-[#4A4A4A] p-2.5 sm:p-3 md:p-4 lg:p-2 xl:p-2.5 hover:bg-[#5A5A5A] transition">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-10 2xl:h-10 minecraft-block bg-[#4CAF50] flex items-center justify-center mb-1 sm:mb-1.5 md:mb-2 lg:mb-1 xl:mb-1.5 mx-auto">
-                  <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-5 2xl:h-5 text-white" />
-                </div>
-                <h3 className="text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-base font-bold text-white mb-1 sm:mb-1.5 lg:mb-0.5 xl:mb-1 minecraft-title">
-                  Track Progress
-                </h3>
-                <p className="text-gray-200 text-xs sm:text-xs md:text-sm lg:text-xs xl:text-xs 2xl:text-xs leading-relaxed">
-                  Visualize your growth with detailed analytics and a portfolio
-                  of completed work
-                </p>
-              </div>
-
               <div className="minecraft-card bg-[#4A4A4A] p-2.5 sm:p-3 md:p-4 lg:p-2 xl:p-2.5 hover:bg-[#5A5A5A] transition">
                 <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-10 2xl:h-10 minecraft-block bg-[#87CEEB] flex items-center justify-center mb-1 sm:mb-1.5 md:mb-2 lg:mb-1 xl:mb-1.5 mx-auto">
                   <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-5 2xl:h-5 text-[#1A1A1A]" />
@@ -147,19 +121,6 @@ export default function LandingPage() {
                 <p className="text-gray-200 text-xs sm:text-xs md:text-sm lg:text-xs xl:text-xs 2xl:text-xs leading-relaxed">
                   Get intelligent challenges and feedback powered by AI to
                   accelerate your learning
-                </p>
-              </div>
-
-              <div className="minecraft-card bg-[#4A4A4A] p-2.5 sm:p-3 md:p-4 lg:p-2 xl:p-2.5 hover:bg-[#5A5A5A] transition">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-10 2xl:h-10 minecraft-block bg-[#9C27B0] flex items-center justify-center mb-1 sm:mb-1.5 md:mb-2 lg:mb-1 xl:mb-1.5 mx-auto">
-                  <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-5 2xl:h-5 text-white" />
-                </div>
-                <h3 className="text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-base font-bold text-white mb-1 sm:mb-1.5 lg:mb-0.5 xl:mb-1 minecraft-title">
-                  Multiple Paths
-                </h3>
-                <p className="text-gray-200 text-xs sm:text-xs md:text-sm lg:text-xs xl:text-xs 2xl:text-xs leading-relaxed">
-                  Choose from various skill paths: Design, Development, Writing,
-                  Photography, and more
                 </p>
               </div>
             </motion.div>
